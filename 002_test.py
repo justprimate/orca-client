@@ -38,7 +38,7 @@ async def main(quantity, market="devUSDC/devUSDT"):
     
     tokens = {
         "SOL": {"mint": PublicKey("So11111111111111111111111111111111111111112"), "decimals": 9},
-        "USDC_DEV": {"mint": PublicKey("EmXq3Ni9gfudTiyNKzzYvpnQqnJEMRw2ttnVXoJXjLo1"), "decimals": 6},
+        "USDC": {"mint": PublicKey("EmXq3Ni9gfudTiyNKzzYvpnQqnJEMRw2ttnVXoJXjLo1"), "decimals": 6},
         "devUSDC": {"mint": PublicKey("BRjpCHtyQLNCo8gqRUr8jtdAj5AjPYQaoqbvcZiHok1k"), "decimals": 6},
         "devUSDT": {"mint": PublicKey("H8UekPGwePSmQ3ttuYGPU1szyFfjZR4N53rymSFwpLPm"), "decimals": 6}
     }
@@ -48,7 +48,7 @@ async def main(quantity, market="devUSDC/devUSDT"):
         PublicKey(DEVNET_WHIRLPOOLS_CONFIG), # whirlpools config
         tokens[market.split("/")[0]]["mint"],
         tokens[market.split("/")[1]]["mint"],
-        64
+        1
     ).pubkey
     whirlpool = await ctx.fetcher.get_whirlpool(whirlpool_pubkey)
 
@@ -120,64 +120,7 @@ async def main(quantity, market="devUSDC/devUSDT"):
     signature = await tx.build_and_execute()
     print("TX signature", signature)
 
-
-    """
-    # input
-    # no threshold because it is difficult to port swap quote function ^^;
-    a_to_b = False  # USDC to SAMO
-    amount = DecimalUtil.to_u64(Decimal("0.01"), token_b_decimal)  # USDC
-    amount_specified_is_input = True
-    other_amount_threshold = 0
-    sqrt_price_limit = SwapUtil.get_default_sqrt_price_limit(a_to_b)
-
-    # get ATA (not considering WSOL and creation of ATA)
-    token_account_a = TokenUtil.derive_ata(keypair.public_key, whirlpool.token_mint_a)
-    token_account_b = TokenUtil.derive_ata(keypair.public_key, whirlpool.token_mint_b)
-    print("token_account_a", token_account_a)
-    print("token_account_b", token_account_b)
-
-    # get TickArray
-    pubkeys = SwapUtil.get_tick_array_pubkeys(
-        whirlpool.tick_current_index,
-        whirlpool.tick_spacing,
-        a_to_b,
-        ctx.program_id,
-        whirlpool_pubkey
-    )
-    print("tickarrays", pubkeys)
-
-    # get Oracle
-    oracle = PDAUtil.get_oracle(ctx.program_id, whirlpool_pubkey).pubkey
-    print("oracle", oracle)
-
-    # execute transaction
-    ix = WhirlpoolIx.swap(
-        ctx.program_id,
-        SwapParams(
-            amount=amount,
-            other_amount_threshold=other_amount_threshold,
-            sqrt_price_limit=sqrt_price_limit,
-            amount_specified_is_input=amount_specified_is_input,
-            a_to_b=a_to_b,
-            token_authority=keypair.public_key,
-            whirlpool=whirlpool_pubkey,
-            token_owner_account_a=token_account_a,
-            token_vault_a=whirlpool.token_vault_a,
-            token_owner_account_b=token_account_b,
-            token_vault_b=whirlpool.token_vault_b,
-            tick_array_0=pubkeys[0],
-            tick_array_1=pubkeys[1],
-            tick_array_2=pubkeys[2],
-            oracle=oracle,
-        )
-    )
-    tx = TransactionBuilder(ctx.connection, keypair).add_instruction(ix)
-    signature = await tx.build_and_execute()
-    print("TX signature", signature)
-
-    """
-
-asyncio.run(main(0.1, market="SOL/devUSDT"))
+asyncio.run(main(1, market="devUSDC/devUSDT"))
 
 """
 SAMPLE OUTPUT:

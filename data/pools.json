@@ -1,0 +1,26 @@
+{
+    "SOL/devUSDC": {
+        "pool": "3KBZiL2g8C7tiJ32hTv5v3KM7aK9htpqTw4cTXz1HvPt",
+        "ticks": 64,
+        "a_mint": "So11111111111111111111111111111111111111112",
+        "a_decimals": 9,
+        "b_mint": "BRjpCHtyQLNCo8gqRUr8jtdAj5AjPYQaoqbvcZiHok1k",
+        "b_decimals": 6
+    },
+    "devUSDC/devUSDT": {
+        "pool": "63cMwvN8eoaD39os9bKP8brmA7Xtov9VxahnPufWCSdg",
+        "ticks": 1,
+        "a_mint": "BRjpCHtyQLNCo8gqRUr8jtdAj5AjPYQaoqbvcZiHok1k",
+        "a_decimals": 6,
+        "b_mint": "H8UekPGwePSmQ3ttuYGPU1szyFfjZR4N53rymSFwpLPm",
+        "b_decimals": 6
+    },
+    "devSAMO/devUSDC": {
+        "pool": "EgxU92G34jw6QDG9RuTX9StFg1PmHuDqkRKAE5kVEiZ4",
+        "tick": 64,
+        "a_mint": "Jd4M8bfJG3sAkd82RsGWyEXoaBXQP7njFzBwEaCTuDa",
+        "a_decimals": 6,
+        "b_mint": "BRjpCHtyQLNCo8gqRUr8jtdAj5AjPYQaoqbvcZiHok1k",
+        "b_decimals": 6
+    }
+}
